@@ -36,9 +36,13 @@ void DX_Init(Int32 seed_in)
 
 double * user_unif_rand()
 {
+  if(seed[1] == 0 || seed[2] == 0){
+    seed[1]=47; seed[2]=536869888;
+  }
   if(seed[0] != 0){
     DX_Init((unsigned int)seed[0]);
   }
+  
   int II0 = I_X;
   if(++I_X >= K_X)  I_X = 0;     
   XX[I_X] = MODP(B_X * XX[I_X] + XX[II0]);
